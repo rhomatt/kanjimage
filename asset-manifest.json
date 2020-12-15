@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/kanjimage/static/css/main.ab7136cd.chunk.css",
+    "main.js": "/kanjimage/static/js/main.d90c2479.chunk.js",
+    "main.js.map": "/kanjimage/static/js/main.d90c2479.chunk.js.map",
+    "runtime-main.js": "/kanjimage/static/js/runtime-main.f4261571.js",
+    "runtime-main.js.map": "/kanjimage/static/js/runtime-main.f4261571.js.map",
+    "static/js/2.da6d957d.chunk.js": "/kanjimage/static/js/2.da6d957d.chunk.js",
+    "static/js/2.da6d957d.chunk.js.map": "/kanjimage/static/js/2.da6d957d.chunk.js.map",
+    "static/js/3.6f12152c.chunk.js": "/kanjimage/static/js/3.6f12152c.chunk.js",
+    "static/js/3.6f12152c.chunk.js.map": "/kanjimage/static/js/3.6f12152c.chunk.js.map",
+    "index.html": "/kanjimage/index.html",
+    "static/css/main.ab7136cd.chunk.css.map": "/kanjimage/static/css/main.ab7136cd.chunk.css.map",
+    "static/js/2.da6d957d.chunk.js.LICENSE.txt": "/kanjimage/static/js/2.da6d957d.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/kanjimage/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f4261571.js",
+    "static/js/2.da6d957d.chunk.js",
+    "static/css/main.ab7136cd.chunk.css",
+    "static/js/main.d90c2479.chunk.js"
+  ]
+}
