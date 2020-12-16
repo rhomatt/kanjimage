@@ -4,7 +4,7 @@ function Button(props){
 
     return(
         <div>
-        <button onClick={props.clickHandler}>
+        <button onClick={clickHandler}>
         {text}
         </button>
         </div>
