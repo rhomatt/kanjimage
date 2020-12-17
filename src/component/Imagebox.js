@@ -1,12 +1,14 @@
 import {useState, useEffect} from 'react';
 import Button from './Button.js';
+import RangeSlider from './RangeSlider.js';
 import Dropzone from './Dropzone.js';
 import handleFiles from '../logic/handleFiles.js';
-import {enlargeImage, blur, threshold, recognize} from '../logic/processImage.js';
+import PI from '../logic/processImage.js';
 
 function Imagebox(){
     const [image, setImage] = useState({buff: null, base64: null}); // image metadata
     const [text, setText] = useState('');
+    const [threshold, setThreshold] = useState(128); // threshold amount for black/white
 
     const handlePaste = (event) =>{
         const items = event.clipboardData.items;
@@ -22,7 +24,7 @@ function Imagebox(){
         if(image.base64){
             setText('Loading...');
 
-            recognize(image.base64)
+            PI.recognize(image.base64)
                 .then(text => {
                     console.log(text);
                     setText(text)
@@ -33,22 +35,26 @@ function Imagebox(){
     const enlargeClick = async () => {
         if(!image.buff)
             return;
-        var newimage = await enlargeImage(image.buff);
+        var newimage = await PI.enlargeImage(image.buff);
         setImage(newimage);
     };
 
     const blurClick = async () => {
         if(!image.buff)
             return;
-        var newimage = await blur(image.buff, true);
+        var newimage = await PI.blur(image.buff, true);
         setImage(newimage);
     }
 
     const thresholdClick = async () => {
         const image = document.getElementById("image");
-        var newimage = await threshold(image);
+        var newimage = await PI.threshold(image, threshold);
         console.log('newimage', newimage);
         setImage(newimage);
+    }
+
+    const slideHandler = (event) => {
+        setThreshold(parseInt(event.target.value));
     }
 
     return(
@@ -57,6 +63,7 @@ function Imagebox(){
         <Dropzone render={() => image.base64} setImage={(image) => setImage(image)}/>
         <Button clickHandler={enlargeClick} text="Enlarge by x2"/>
         <Button clickHandler={blurClick} text="Gausian blur"/>
+        <RangeSlider min={0} max={255} value={threshold} slideHandler={slideHandler}/>
         <Button clickHandler={thresholdClick} text="threshold"/>
         {text}
         </>
