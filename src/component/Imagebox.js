@@ -1,15 +1,21 @@
 import {useState, useEffect} from 'react';
 import Button from './Button.js';
 import Dropzone from './Dropzone.js';
-import readInImage from '../logic/readInImage.js';
+import handleFiles from '../logic/readInImage.js';
 import {enlargeImage, recognize} from '../logic/processImage.js';
 
 function Imagebox(){
     const [image, setImage] = useState({buff: null, base64: null}); // image metadata
     const [text, setText] = useState('');
 
+    const handlePaste = (event) =>{
+        const items = event.clipboardData.items;
+        console.log(items);
+        handleFiles(items, setImage);
+    }
+
     useEffect(() => {
-        document.addEventListener('paste', readInImage(setImage));
+        document.addEventListener('paste', handlePaste);
     }, []);
 
     useEffect(() => {
