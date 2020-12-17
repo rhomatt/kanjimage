@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import Button from './Button.js';
-import {enlargeImage} from '../logic/processImage.js';
+import {enlargeImage, recognize} from '../logic/processImage.js';
 
 // here for reference. Delete later
 // function Image(props){
@@ -9,6 +9,7 @@ import {enlargeImage} from '../logic/processImage.js';
 
 function Imagebox(){
     const [image, setImage] = useState({buff: null, base64: null}); // image metadata
+    const [text, setText] = useState('');
 
     const pasteHandler = (event) => {
         const items = event.clipboardData.items;
@@ -38,7 +39,16 @@ function Imagebox(){
         document.addEventListener('paste', pasteHandler);
     }, []);
 
-    const clickHandler = async () => {
+    useEffect(() => {
+        if(image.base64)
+            recognize(image.base64)
+                .then(text => {
+                    console.log(text);
+                    setText(text)
+                });
+    }, [image]);
+
+    const enlargeClick = async () => {
         if(!image.buff)
             return;
         var newimage = await enlargeImage(image.buff);
@@ -50,7 +60,8 @@ function Imagebox(){
         <>
         {image.base64 ? undefined : 'no image'}
         <img src={image.base64} alt=''/>
-        <Button clickHandler={clickHandler} text="replace me"/>
+        <Button clickHandler={enlargeClick} text="Enlarge"/>
+        {text}
         </>
     );
 }

@@ -17,3 +17,11 @@ export async function enlargeImage(buffer){
     }
 }
 
+export async function recognize(base64){
+    console.log('processing...');
+    var data = await Tesseract.recognize(base64, 'jpn');
+    console.log(data);
+    console.log(data.data.text);
+    return data.data.text;
+}
+
