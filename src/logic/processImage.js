@@ -21,9 +21,19 @@ export async function enlargeImage(buffer){
     }
 }
 
-export async function gaussianBlur(buffer){
+export async function blur(buffer, gaussian){
+    const radius = 1;
     try{
+        var image = await Jimp.read(buffer);
+        if(gaussian)
+            image.gaussian(radius);
+        else
+            image.blur(radius);
 
+        const base64 = await image.getBase64Async(Jimp.AUTO);
+        const buff = await image.getBufferAsync(Jimp.AUTO);
+
+        return {buff, base64};
     }
     catch(error){
         console.error(error);
