@@ -17,7 +17,7 @@ function Dropzone(props){
             className='dropzone'
             onDragOver={dragOver}
             onDrop={dropHandler}>
-                {props.render() ? null : 'Paste text from clipboard or drag and drop here'}
+                {props.render() ? null : 'Paste image from clipboard or drag and drop here'}
                 <img src={props.render()} alt=''/>
         </div>
     );
