@@ -1,9 +1,14 @@
 import {useState, useEffect} from 'react';
 import Button from './Button.js';
-import {enlargeImage} from '../logic/processImage.js'
+import {enlargeImage} from '../logic/processImage.js';
+
+// here for reference. Delete later
+// function Image(props){
+//     return <img src={props.render()}/>
+// }
 
 function Imagebox(){
-    const [image, setImage] = useState({blob: null, base64: null}); // image metadata
+    const [image, setImage] = useState({buff: null, base64: null}); // image metadata
 
     const pasteHandler = (event) => {
         const items = event.clipboardData.items;
@@ -11,16 +16,18 @@ function Imagebox(){
         var blob;
         for(var i = 0; i < items.length; i++){ // get the first image
             let item = items[i];
-            console.log(item);
+            //console.log(item);
             if(item.type === 'image/png'){
                 blob = item.getAsFile();
                 break;
             }
         }
 
-        // there is probably a better way to do this
         var reader = new FileReader();
-        reader.onload = event => setImage({blob, base64: event.target.result});
+        reader.onload = async event => {
+            const buff = await blob.arrayBuffer();
+            setImage({buff, base64: event.target.result})
+        };
 
         if(blob) // should be null if not an image
             reader.readAsDataURL(blob);
@@ -31,9 +38,14 @@ function Imagebox(){
         document.addEventListener('paste', pasteHandler);
     }, []);
 
-    const clickHandler = () => {
-        enlargeImage(image.blob);
-        console.log("clicked");
+    const clickHandler = async () => {
+        try{
+            const buffer = await image.blob.arrayBuffer();
+            enlargeImage(buffer);
+        }
+        catch(error){
+            console.error(error);
+        }
     };
 
     return(
