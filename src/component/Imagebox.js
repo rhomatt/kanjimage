@@ -38,14 +38,11 @@ function Imagebox(){
         document.addEventListener('paste', pasteHandler);
     }, []);
 
-    const clickHandler = async () => {
-        try{
-            const buffer = await image.blob.arrayBuffer();
-            enlargeImage(buffer);
-        }
-        catch(error){
-            console.error(error);
-        }
+    const clickHandler = () => {
+        if(!image.buff)
+            return;
+        const buffer = image.buff;
+        enlargeImage(buffer);
     };
 
     return(
