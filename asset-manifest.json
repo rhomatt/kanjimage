@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/kanjimage/static/css/main.18f1c518.chunk.css",
-    "main.js": "/kanjimage/static/js/main.878cdb55.chunk.js",
-    "main.js.map": "/kanjimage/static/js/main.878cdb55.chunk.js.map",
+    "main.js": "/kanjimage/static/js/main.17184235.chunk.js",
+    "main.js.map": "/kanjimage/static/js/main.17184235.chunk.js.map",
     "runtime-main.js": "/kanjimage/static/js/runtime-main.8c81ce4d.js",
     "runtime-main.js.map": "/kanjimage/static/js/runtime-main.8c81ce4d.js.map",
     "static/js/2.6f60913a.chunk.js": "/kanjimage/static/js/2.6f60913a.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.8c81ce4d.js",
     "static/js/2.6f60913a.chunk.js",
     "static/css/main.18f1c518.chunk.css",
-    "static/js/main.878cdb55.chunk.js"
+    "static/js/main.17184235.chunk.js"
   ]
 }
