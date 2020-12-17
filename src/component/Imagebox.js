@@ -10,6 +10,7 @@ function Imagebox(){
     const [image, setImage] = useState({buff: null, base64: null}); // image metadata
     const [text, setText] = useState('');
     const [threshold, setThreshold] = useState(128); // threshold amount for black/white
+    const [saturation, setSaturation] = useState(50); // saturation amount
 
     const handlePaste = (event) =>{
         const items = event.clipboardData.items;
@@ -50,22 +51,58 @@ function Imagebox(){
     const thresholdClick = async () => {
         const image = document.getElementById("image");
         var newimage = await PI.threshold(image, threshold);
-        console.log('newimage', newimage);
         setImage(newimage);
     }
 
-    const slideHandler = (event) => {
+    const thresholdSlide= (event) => {
         setThreshold(parseInt(event.target.value));
+    }
+
+    const saturationClick = async () => {
+        if(!image.buff)
+            return;
+        var newimage = await PI.saturate(image.buff, saturation);
+        setImage(newimage);
+    }
+
+    const saturationSlide = (event) => {
+        setSaturation(parseInt(event.target.value));
+        console.log(saturation);
+    }
+
+    const greyscaleClick = async () => {
+        if(!image.buff)
+            return;
+        var newimage = await PI.greyscale(image.buff);
+        setImage(newimage);
+    }
+
+    const invertClick = async () => {
+        if(!image.buff)
+            return;
+        var newimage = await PI.invert(image.buff);
+        setImage(newimage);
     }
 
     return(
         <>
         {image.base64 ? undefined : 'no image'}
         <Dropzone render={() => image.base64} setImage={(image) => setImage(image)}/>
+
         <Button clickHandler={enlargeClick} text="Enlarge by x2"/>
+
         <Button clickHandler={blurClick} text="Gausian blur"/>
-        <RangeSlider min={0} max={255} value={threshold} slideHandler={slideHandler}/>
+
+        <RangeSlider min={0} max={255} value={threshold} slideHandler={thresholdSlide}/>
         <Button clickHandler={thresholdClick} text="threshold"/>
+
+        <RangeSlider min={0} max={100} value={saturation} slideHandler={saturationSlide}/>
+        <Button clickHandler={saturationClick} text="saturation"/>
+
+        <Button clickHandler={greyscaleClick} text="greyscale"/>
+
+        <Button clickHandler={invertClick} text="invert"/>
+
         {text}
         <SearchOptions text={text}/>
         </>

@@ -69,6 +69,51 @@ processImage["threshold"] = async function(element, amt=128){
     return {buff, base64};
 }
 
+processImage["saturate"] = async function(buffer, amt=50){
+    try{
+        var image = await Jimp.read(buffer);
+        image.color([
+            { apply: 'saturate', params: [amt]}
+        ]);
+        const base64 = await image.getBase64Async(Jimp.AUTO);
+        const buff = await image.getBufferAsync(Jimp.AUTO);
+
+        return {buff, base64};
+    }
+    catch(error){
+        console.error(error);
+    }
+}
+
+processImage["greyscale"] = async function(buffer){
+    try{
+        var image = await Jimp.read(buffer);
+        image.greyscale();
+        const base64 = await image.getBase64Async(Jimp.AUTO);
+        const buff = await image.getBufferAsync(Jimp.AUTO);
+
+        return {buff, base64};
+    }
+    catch(error){
+        console.error(error);
+    }
+}
+
+
+processImage["invert"] = async function(buffer){
+    try{
+        var image = await Jimp.read(buffer);
+        image.invert();
+        const base64 = await image.getBase64Async(Jimp.AUTO);
+        const buff = await image.getBufferAsync(Jimp.AUTO);
+
+        return {buff, base64};
+    }
+    catch(error){
+        console.error(error);
+    }
+}
+
 processImage["recognize"] = async function(base64){
     console.log('processing...');
     var data = await Tesseract.recognize(base64, 'jpn');
