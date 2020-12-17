@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import Button from './Button.js';
 import Dropzone from './Dropzone.js';
 import handleFiles from '../logic/handleFiles.js';
-import {enlargeImage, blur, recognize} from '../logic/processImage.js';
+import {enlargeImage, blur, threshold, recognize} from '../logic/processImage.js';
 
 function Imagebox(){
     const [image, setImage] = useState({buff: null, base64: null}); // image metadata
@@ -44,12 +44,20 @@ function Imagebox(){
         setImage(newimage);
     }
 
+    const thresholdClick = async () => {
+        const image = document.getElementById("image");
+        var newimage = await threshold(image);
+        console.log('newimage', newimage);
+        setImage(newimage);
+    }
+
     return(
         <>
         {image.base64 ? undefined : 'no image'}
         <Dropzone render={() => image.base64} setImage={(image) => setImage(image)}/>
         <Button clickHandler={enlargeClick} text="Enlarge by x2"/>
         <Button clickHandler={blurClick} text="Gausian blur"/>
+        <Button clickHandler={thresholdClick} text="threshold"/>
         {text}
         </>
     );

@@ -12,13 +12,14 @@ function Dropzone(props){
 
     const dragOver = (event) => { event.preventDefault(); } // Need this for the drop to work
 
+    // img must have id to be able to pass document element to LenaJS
     return(
         <div
             className='dropzone'
             onDragOver={dragOver}
             onDrop={dropHandler}>
                 {props.render() ? null : 'Paste image from clipboard or drag and drop here'}
-                <img src={props.render()} alt=''/>
+                <img id="image" src={props.render()} alt=''/>
         </div>
     );
 }
