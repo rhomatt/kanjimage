@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import Button from './Button.js';
 import Dropzone from './Dropzone.js';
-import handleFiles from '../logic/readInImage.js';
+import handleFiles from '../logic/handleFiles.js';
 import {enlargeImage, recognize} from '../logic/processImage.js';
 
 function Imagebox(){

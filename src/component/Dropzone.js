@@ -1,5 +1,5 @@
 import './Dropzone.css';
-import handleFiles from '../logic/readInImage.js';
+import handleFiles from '../logic/handleFiles.js';
 
 function Dropzone(props){
     const dropHandler = (event) => {
