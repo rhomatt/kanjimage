@@ -1,11 +1,12 @@
 import Tesseract from 'tesseract.js'
 import Jimp from 'jimp';
 const Lena = require('lena.js');
-console.log(Lena);
+
+var processImage = {};
 
 // increase image size
 // double size for now. work on resizing by a factor later
-export async function enlargeImage(buffer){
+processImage["enlargeImage"] = async function(buffer){
     try{
         var image = await Jimp.read(buffer);
         const fx = image.bitmap.width * 2,
@@ -23,7 +24,7 @@ export async function enlargeImage(buffer){
     }
 }
 
-export async function blur(buffer, gaussian){
+processImage["blur"] = async function(buffer, gaussian){
     const radius = 1;
     try{
         var image = await Jimp.read(buffer);
@@ -44,7 +45,7 @@ export async function blur(buffer, gaussian){
 
 // must be passed a document element
 // there is probably a better way to do this
-export async function threshold(element, amt=128){
+processImage["threshold"] = async function(element, amt=128){
     var canvas = document.createElement("canvas");
     console.log(canvas);
     const filter = (pixels) => Lena["thresholding"](pixels, amt);
@@ -68,7 +69,7 @@ export async function threshold(element, amt=128){
     return {buff, base64};
 }
 
-export async function recognize(base64){
+processImage["recognize"] = async function(base64){
     console.log('processing...');
     var data = await Tesseract.recognize(base64, 'jpn');
     console.log(data);
@@ -76,3 +77,4 @@ export async function recognize(base64){
     return data.data.text;
 }
 
+export default processImage;
