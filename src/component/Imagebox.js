@@ -1,51 +1,27 @@
 import {useState, useEffect} from 'react';
 import Button from './Button.js';
+import Dropzone from './Dropzone.js';
+import readInImage from '../logic/readInImage.js';
 import {enlargeImage, recognize} from '../logic/processImage.js';
-
-// here for reference. Delete later
-// function Image(props){
-//     return <img src={props.render()}/>
-// }
 
 function Imagebox(){
     const [image, setImage] = useState({buff: null, base64: null}); // image metadata
     const [text, setText] = useState('');
 
-    const pasteHandler = (event) => {
-        const items = event.clipboardData.items;
-
-        var blob;
-        for(var i = 0; i < items.length; i++){ // get the first image
-            let item = items[i];
-            //console.log(item);
-            if(item.type === 'image/png'){
-                blob = item.getAsFile();
-                break;
-            }
-        }
-
-        var reader = new FileReader();
-        reader.onload = async event => {
-            const buff = await blob.arrayBuffer();
-            setImage({buff, base64: event.target.result})
-        };
-
-        if(blob) // should be null if not an image
-            reader.readAsDataURL(blob);
-
-    };
-
     useEffect(() => {
-        document.addEventListener('paste', pasteHandler);
+        document.addEventListener('paste', readInImage(setImage));
     }, []);
 
     useEffect(() => {
-        if(image.base64)
+        if(image.base64){
+            setText('Loading...');
+
             recognize(image.base64)
                 .then(text => {
                     console.log(text);
                     setText(text)
                 });
+        }
     }, [image]);
 
     const enlargeClick = async () => {
@@ -59,8 +35,8 @@ function Imagebox(){
     return(
         <>
         {image.base64 ? undefined : 'no image'}
-        <img src={image.base64} alt=''/>
-        <Button clickHandler={enlargeClick} text="Enlarge"/>
+        <Dropzone render={() => image.base64} setImage={(image) => setImage(image)}/>
+        <Button clickHandler={enlargeClick} text="Enlarge by x2"/>
         {text}
         </>
     );
