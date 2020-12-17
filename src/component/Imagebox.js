@@ -38,11 +38,12 @@ function Imagebox(){
         document.addEventListener('paste', pasteHandler);
     }, []);
 
-    const clickHandler = () => {
+    const clickHandler = async () => {
         if(!image.buff)
             return;
-        const buffer = image.buff;
-        enlargeImage(buffer);
+        var newimage = await enlargeImage(image.buff);
+        console.log(newimage);
+        setImage(newimage);
     };
 
     return(
