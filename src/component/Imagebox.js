@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import Button from './Button.js';
 import RangeSlider from './RangeSlider.js';
+import SearchOptions from './SearchOptions.js';
 import Dropzone from './Dropzone.js';
 import handleFiles from '../logic/handleFiles.js';
 import PI from '../logic/processImage.js';
@@ -66,6 +67,7 @@ function Imagebox(){
         <RangeSlider min={0} max={255} value={threshold} slideHandler={slideHandler}/>
         <Button clickHandler={thresholdClick} text="threshold"/>
         {text}
+        <SearchOptions text={text}/>
         </>
     );
 }
