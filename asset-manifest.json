@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/kanjimage/static/css/main.219fa2a4.chunk.css",
-    "main.js": "/kanjimage/static/js/main.25abdfac.chunk.js",
-    "main.js.map": "/kanjimage/static/js/main.25abdfac.chunk.js.map",
+    "main.js": "/kanjimage/static/js/main.48ff1f41.chunk.js",
+    "main.js.map": "/kanjimage/static/js/main.48ff1f41.chunk.js.map",
     "runtime-main.js": "/kanjimage/static/js/runtime-main.e6586c62.js",
     "runtime-main.js.map": "/kanjimage/static/js/runtime-main.e6586c62.js.map",
-    "static/js/2.b4cd67d2.chunk.js": "/kanjimage/static/js/2.b4cd67d2.chunk.js",
-    "static/js/2.b4cd67d2.chunk.js.map": "/kanjimage/static/js/2.b4cd67d2.chunk.js.map",
+    "static/js/2.0c74fbf5.chunk.js": "/kanjimage/static/js/2.0c74fbf5.chunk.js",
+    "static/js/2.0c74fbf5.chunk.js.map": "/kanjimage/static/js/2.0c74fbf5.chunk.js.map",
     "static/js/3.48cc867f.chunk.js": "/kanjimage/static/js/3.48cc867f.chunk.js",
     "static/js/3.48cc867f.chunk.js.map": "/kanjimage/static/js/3.48cc867f.chunk.js.map",
     "index.html": "/kanjimage/index.html",
     "static/css/main.219fa2a4.chunk.css.map": "/kanjimage/static/css/main.219fa2a4.chunk.css.map",
-    "static/js/2.b4cd67d2.chunk.js.LICENSE.txt": "/kanjimage/static/js/2.b4cd67d2.chunk.js.LICENSE.txt"
+    "static/js/2.0c74fbf5.chunk.js.LICENSE.txt": "/kanjimage/static/js/2.0c74fbf5.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e6586c62.js",
-    "static/js/2.b4cd67d2.chunk.js",
+    "static/js/2.0c74fbf5.chunk.js",
     "static/css/main.219fa2a4.chunk.css",
-    "static/js/main.25abdfac.chunk.js"
+    "static/js/main.48ff1f41.chunk.js"
   ]
 }
