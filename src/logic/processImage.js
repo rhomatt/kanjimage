@@ -117,9 +117,9 @@ processImage["invert"] = async function(buffer){
 processImage["recognize"] = async function(base64){
     console.log('processing...');
     var data = await Tesseract.recognize(base64, 'jpn');
-    console.log(data);
-    console.log(data.data.text);
-    return data.data.text;
+    var text = data.data.text;
+    text = text.replace(/\s+/g, '');
+    return text;
 }
 
 export default processImage;
